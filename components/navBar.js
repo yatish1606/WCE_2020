@@ -3,11 +3,20 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 import {FontAwesome5} from '@expo/vector-icons';
-import Login from './loginScreen';
+import Statistics from './statistics';
 import HomePage from './homePage';
 import Farm from './farmPage';
+import Settings from './settings.js';
 
 class HomeScreen extends Component {
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      QuicksandBold: require('../assets/fonts/Quicksand-Bold.ttf'),
+      NunitoSemiBold: require('../assets/fonts/Nunito-SemiBold.ttf'),
+      NunitoBold: require('../assets/fonts/Nunito-Bold.ttf'),
+    });
+  }
   render() {
   return (
 
@@ -17,18 +26,25 @@ class HomeScreen extends Component {
 }};
 
 class SettingsScreen extends Component {
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      QuicksandBold: require('../assets/fonts/Quicksand-Bold.ttf'),
+      NunitoSemiBold: require('../assets/fonts/Nunito-SemiBold.ttf'),
+      NunitoBold: require('../assets/fonts/Nunito-Bold.ttf'),
+    });
+}
+
   render() {
   return (
-    <View style={styles.container}>
-      <Text>Settings</Text>
-    </View>
+    <Settings/>
   );
 }};
 
 class StatisticsScreen extends Component {
   render() {
   return (
-    <Login/>
+   <Statistics/>
   );
 }};
 
@@ -74,7 +90,7 @@ const Tabs =  createMaterialBottomTabNavigator({
     navigationOptions:{
       tabBarLabel:'Statistics',
       tabBarIcon:({tintColor})=>(
-        <FontAwesome5 name="chart-bar" size={20} color={tintColor} />
+        <FontAwesome5 name="chart-line" size={20} color={tintColor} />
         )
   }},
   Farm:{screen:FarmScreen,
@@ -86,13 +102,13 @@ const Tabs =  createMaterialBottomTabNavigator({
   }},
   Weather:{screen:WeatherScreen,
     navigationOptions:{
-      tabBarLabel:'Weather',
+      tabBarLabel:'Supply Chain',
       tabBarIcon:({tintColor})=>(
-        <FontAwesome5 name="sun" size={20} color={tintColor} />
+        <FontAwesome5 name="briefcase" size={20} color={tintColor} />
       ),
   }},
 }, {
-  initialRouteName:'Home',
+  initialRouteName:'Farm',
   labeled:true,
   activeColor:'#15AB2B',
   inactiveColor:'#759179',

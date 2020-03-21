@@ -8,7 +8,7 @@ import BackArrow from './backArrow.js';
 import {Font, AppLoading} from 'expo-font';
 import { CheckBox } from 'react-native-elements';
 import Profile from './profile.js';
-import GetStarted from './getStarted.js';
+//import GetStarted from './getStarted.js';
 
 
 export default class FarmSetUp extends React.Component{

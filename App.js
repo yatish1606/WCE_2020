@@ -8,5 +8,5 @@ export default createAppContainer( createSwitchNavigator({
   Home:{ screen: NavBar},
   Wizard:{screen:Wizard},
 }, {
-  initialRouteName:'Wizard'
+  initialRouteName:'Home'
 }))

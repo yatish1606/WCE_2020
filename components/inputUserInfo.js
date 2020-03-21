@@ -6,6 +6,7 @@ import Lottie from 'lottie-react-native';
 import Swiper from 'react-native-swiper';
 import {FontAwesome5} from '@expo/vector-icons';
 import SwitchSelector from 'react-native-switch-selector';
+import FarmInfo from './farmInfo.js';
 
 const options = [
     { label: 'Farmer', value: '0' , imageIcon: <FontAwesome5 name='user'/> },
@@ -65,6 +66,9 @@ export class Slide1 extends React.Component{
 
 
   render(){
+
+
+
     return(
       <View style={{ backgroundColor:'#fff', height:230, marginHorizontal:25, marginVertical:10}}>
         <View style={{marginVertical:5}}>
@@ -122,7 +126,7 @@ export class Slide2 extends React.Component{
 
   onPasswordChange(text) {
       this.setState({
-          name:text
+          password:text
       });
   }
 
@@ -145,6 +149,9 @@ export class Slide2 extends React.Component{
 
 
   render(){
+
+
+
     return(
       <View style={{ backgroundColor:'#fff', height:230, marginHorizontal:25, marginVertical:10}}>
         <View style={{marginVertical:5}}>
@@ -219,6 +226,9 @@ export default class InputUserInfo extends React.Component{
 
 
   render(){
+
+    const { navigate } = this.props.navigation;
+    
     return (
       <View style={{flex:1, marginTop:StatusBar.currentHeight, backgroundColor:'#fff' }}>
       <BackArrow/>
@@ -266,7 +276,7 @@ export default class InputUserInfo extends React.Component{
 
       </View>
 
-      <TouchableOpacity style={{width:140, height:50, backgroundColor:'#fff', borderRadius:25, marginVertical:20, alignItems:'center', justifyContent:'center', elevation:3, paddingVertical:5,}}  onPress={()=>{this.props.navigation.navigate('InputUserInfo')} } disabled={false}>
+      <TouchableOpacity style={{width:140, height:50, backgroundColor:'#fff', borderRadius:25, marginVertical:20, alignItems:'center', justifyContent:'center', elevation:3, paddingVertical:5,}}  onPress={()=>{this.props.navigation.navigate('FarmInfo')} } disabled={false}>
         <Text style={{fontSize:18, color:'green', fontFamily:'QuicksandBold'}}> Proceed </Text>
       </TouchableOpacity>
 

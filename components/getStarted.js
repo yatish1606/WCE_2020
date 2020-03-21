@@ -6,7 +6,7 @@ import { SocialIcon} from 'react-native-elements';
 import Lottie from 'lottie-react-native';
 import { Asset } from 'expo-asset';
 import { AppLoading} from 'expo';
-import {Font} from 'expo-font';
+import * as Font from 'expo-font';
 
 import FarmSetUp from './farmSetUp.js'
 import Profile from './profile.js'
@@ -60,7 +60,7 @@ export default class Login extends React.Component{
 constructor(){
   super()
   this.state={
-    isReady:false,
+
     detected:false,
     fontLoaded:false,
   }
@@ -145,7 +145,7 @@ async _loadAssetsAsync() {
 
     const { navigate } = this.props.navigation;
 
-    if (!this.state.isReady) {
+    if (!this.state.fontLoaded) {
       return (
         <AppLoading
           startAsync={this._loadAssetsAsync}
