@@ -5,7 +5,7 @@ import MotionSlider from 'react-native-motion-slider';
 import {FontAwesome5} from '@expo/vector-icons';
 import NumericInput from 'react-native-numeric-input'
 import BackArrow from './backArrow.js';
-import {Font, AppLoading} from 'expo-font';
+import * as Font from 'expo-font';
 import { CheckBox } from 'react-native-elements';
 import Profile from './profile.js';
 //import GetStarted from './getStarted.js';

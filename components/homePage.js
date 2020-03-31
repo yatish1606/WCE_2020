@@ -21,6 +21,7 @@ export default class HomePage extends React.Component{
       sunrise:'',
       sunset:'',
       trial:'hey',
+      error:'',
     };
 
 
@@ -38,18 +39,14 @@ export default class HomePage extends React.Component{
       position => {
         this.fetchWeather(position.coords.latitude, position.coords.longitude);
       },
-      error => {
-        this.setState({
-          error: 'Error Getting Weather data'
-        });
-      }
+
     );
 
   }
 
 
 
-    fetchWeather(lat = 25, lon = 25) {
+    fetchWeather(lat = 18, lon = 73) {
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${API_KEY}&units=metric`
     )
@@ -62,10 +59,11 @@ export default class HomePage extends React.Component{
           description: json.weather.main,
           sunrise: json.sys.sunrise,
           sunset: json.sys.sunset,
-        //  isLoading: false
+
         });
 
       });
+
   }
 
 
@@ -76,7 +74,7 @@ export default class HomePage extends React.Component{
   render() {
 
     Number.prototype.padLeft = function (width, padChar) {
-    // Returns a padded string
+
     padChar = padChar || ' ';
     var value = this.toString();
     while (value.length < width) {
@@ -87,7 +85,7 @@ export default class HomePage extends React.Component{
 
 
     Date.prototype.format = function (formatString) {
-      // Returns a formatted date string
+
       var month = this.getMonth() + 1,
           day = this.getDate(),
           year = this.getFullYear(),
@@ -128,7 +126,7 @@ export default class HomePage extends React.Component{
 
     if (!this.state.fontLoaded) {
       return (
-        <View></View>
+        <View style={{flex:1, backgroundColor:'red'}}></View>
       );
     }
 
@@ -138,7 +136,8 @@ export default class HomePage extends React.Component{
 
 
           <View style={styles.userBox}>
-            <View style={{flexDirection:'row', justifyContent:'flex-start'}}>
+            <TouchableOpacity>
+            <View style={{flexDirection:'row', justifyContent:'flex-start',}}>
 
             <View style={{height:60, width:60, borderRadius:30, borderWidth:1, borderColor:'#E8E9EA', backgroundColor:'#fff', marginVertical:5, marginHorizontal:5, alignItems:'center', justifyContent:'center'}}>
               <Image source = {require('../assets/farmer.png')} style={{height:50, width:50, borderRadius:30}} />
@@ -147,16 +146,18 @@ export default class HomePage extends React.Component{
             <View style={{backgroundColor:'#fff'}}>
               <View style={{ justifyContent:'space-around', marginHorizontal:5, marginTop:10, backgroundColor:'#fff'}}>
                 <View style={{flexDirection:'row', alignItems:'center'}}>
-                <FontAwesome5 name="map-marker" size={12} color={'#1388E7'} />
+                <FontAwesome5 name="map-marker-alt" size={12} color={'#E94B41'} />
                 <Text style={{fontSize:12, fontFamily:'NunitoSemiBold', marginHorizontal:5, color:'#B4B1B2'}}>PUNE, INDIA</Text>
                 </View>
                 <Text style={{fontSize:27, fontFamily:'QuicksandBold', color:'green'}}>User12345</Text>
               </View>
-            </View>
-
-
 
             </View>
+
+
+
+            </View>
+            </TouchableOpacity>
 
             <TouchableOpacity style={{marginVertical:5, marginHorizontal:15}}>
               <FontAwesome5 name="bell" size={27} color={'#d4d4d4'} />
@@ -167,12 +168,12 @@ export default class HomePage extends React.Component{
           <View style={styles.weatherBox}>
             <View style={{flex:5, backgroundColor:'#fff', marginHorizontal:2, marginVertical:5, paddingLeft:15}}>
               <Text style={{fontFamily:'QuicksandBold', fontSize:18, marginVertical:6}}>Sunday, 15th March </Text>
-              <Text style={{fontFamily:'NunitoSemiBold', fontSize:15, marginVertical:6}}>Sunny</Text>
+              <Text style={{fontFamily:'NunitoSemiBold', fontSize:15, marginVertical:6}}>Cloudy</Text>
 
-              <View style={{flexDirection:'row', marginTop:10}}>
-              <Text style={{fontFamily:'NunitoSemiBold', fontSize:13}}>Sunrise : {sunsetTime} </Text>
+              <View style={{flexDirection:'row', marginTop:10, alignItems:'center'}}>
+              <Text style={{fontFamily:'NunitoSemiBold', fontSize:13}}>Sunrise : {sunriseTime} </Text>
               <Text  style={{fontFamily:'NunitoSemiBold', fontSize:16, color:'#d3d3d3'}}> | </Text>
-              <Text style={{fontFamily:'NunitoSemiBold', fontSize:13}}>Sunrise : {sunsetTime} </Text>
+              <Text style={{fontFamily:'NunitoSemiBold', fontSize:13}}>Sunset : {sunsetTime} </Text>
               </View>
 
             </View>
@@ -204,22 +205,106 @@ export default class HomePage extends React.Component{
 
 
 
-          <View style={{alignItems:'flex-start', justifyContent:'flex-start', backgroundColor:'white', width:width-60, marginTop:10, marginHorizontal:15}}>
+          <View style={{ justifyContent:'center', backgroundColor:'white', width:width-20, marginVertical:5, marginHorizontal:15, alignItems:'center'}}>
           <Text style={styles.myFarmText}>My Farm</Text>
           </View>
 
-          <View style={styles.gridBox}>
+
+
+
+
+
+
+
+          <View style={{height:Dimensions.get('window').width - 100, width:Dimensions.get('window').width - 100, borderRadius:8, backgroundColor:'#E2FCDE',  marginVertical:5,}}>
+
+
+          <View style={{width:2,height:Dimensions.get('window').width - 100, borderRadius:1, backgroundColor:'#fff', alignSelf:'center'}}>
           </View>
 
+          <View style={{height:2,width:Dimensions.get('window').width - 100, borderRadius:1, backgroundColor:'#fff', alignSelf:'center', position:'absolute', top: (Dimensions.get('window').width - 100)/2 }}>
+          </View>
+
+
+          <TouchableOpacity style={{position:'absolute', height:30, width:30, borderRadius:15, top:(Dimensions.get('window').width - 40)/6 ,left:(Dimensions.get('window').width - 100)/5 }}>
+          <Lottie
+            style={{
+              width: 30,
+              height: 30,
+              backgroundColor: '#00000000',
+
+
+            }}
+            source={require('../assets/sensor.json')}
+            autoPlay loop duration={2000}
+          />
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={{position:'absolute', height:30, width:30, borderRadius:15, top:(Dimensions.get('window').width - 40)/6 ,right:(Dimensions.get('window').width - 100)/5 }}>
+          <Lottie
+            style={{
+              width: 30,
+              height: 30,
+              backgroundColor: '#00000000',
+
+
+            }}
+            source={require('../assets/sensor.json')}
+            autoPlay loop duration={2000}
+          />
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={{position:'absolute', height:30, width:30, borderRadius:15, bottom:(Dimensions.get('window').width - 40)/7 ,left:(Dimensions.get('window').width - 100)/5 }}>
+          <Lottie
+            style={{
+              width: 30,
+              height: 30,
+              backgroundColor: '#00000000',
+
+
+            }}
+            source={require('../assets/sensor.json')}
+            autoPlay loop duration={2000}
+          />
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={{position:'absolute', height:30, width:30, borderRadius:15, bottom:(Dimensions.get('window').width - 40)/7 ,right:(Dimensions.get('window').width - 100)/5 }}>
+          <Lottie
+            style={{
+              width: 30,
+              height: 30,
+              backgroundColor: '#00000000',
+
+
+            }}
+            source={require('../assets/sensor.json')}
+            autoPlay loop duration={2000}
+          />
+          </TouchableOpacity>
+
+
+
+
+
+
+          </View>
+
+
           <View style={styles.mainSwitch}>
-            <View style={{alignItems:'exclamation-circle', flexDirection:'row'}}>
-            <FontAwesome5 name="map-marker" size={12} color={'#1388E7'} />
-            <Text style={{color:'red', fontSize:15, fontWeight:'bold', paddingLeft:10}}>SWITCH OFF</Text>
+            <View style={{alignItems:'center', flexDirection:'row'}}>
+            <FontAwesome5 name="exclamation-circle" size={20} color={'#FB3930'} />
+            <View>
+            <Text style={{color:'#FB3930', fontSize:15,  paddingLeft:10, fontFamily:'QuicksandBold'}}>SWITCH OFF</Text>
+            <Text style={{color:'#BC9D9B', fontSize:10,  paddingLeft:10, fontFamily:'NunitoSemiBold'}}>In case of emergency, switch off all water supply</Text>
+            </View>
             </View>
             <Switch
             value={isSwitchOn}
             onValueChange={() =>{ this.setState({ isSwitchOn: !isSwitchOn }); }}
-            color={'green'}
+            color={'#FB3930'}
           />
           </View>
 
@@ -234,6 +319,8 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
     flex:1,
     backgroundColor:'white',
+    alignItems:'center',
+    height:Dimensions.get('window').height - StatusBar.currentHeight - 50,
 
   },
   userBox:{
@@ -244,7 +331,8 @@ const styles = StyleSheet.create({
     borderWidth:0,
     marginHorizontal:10,
     marginVertical:5,
-    justifyContent:'space-between'
+    justifyContent:'space-between',
+    width:width-20,
   },
   weatherBox:{
     flex:3,
@@ -274,15 +362,18 @@ const styles = StyleSheet.create({
     //borderColor:'#d3d3d3'
   },
   mainSwitch:{
-    flex:1,
+    flex:1.2,
     justifyContent:'space-between',
     alignItems:'center',
-    backgroundColor:'white',
+    backgroundColor:'#FEEAE3',
     marginHorizontal:10,
     marginVertical:5,
-    borderTopWidth:1,
-    borderTopColor:'#d3d3d3',
+    // borderTopWidth:1,
+    // borderTopColor:'#d3d3d3',
     flexDirection:'row',
+    paddingHorizontal:10,
+    width:width-20,
+    borderRadius:7
   },
   myFarmText:{
     color:'green',

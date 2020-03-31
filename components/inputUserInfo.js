@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, StatusBar, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import BackArrow from './backArrow.js';
-import {Font} from 'expo-font';
+import * as Font from 'expo-font';
 import Lottie from 'lottie-react-native';
 import Swiper from 'react-native-swiper';
 import {FontAwesome5} from '@expo/vector-icons';
@@ -228,7 +228,7 @@ export default class InputUserInfo extends React.Component{
   render(){
 
     const { navigate } = this.props.navigation;
-    
+
     return (
       <View style={{flex:1, marginTop:StatusBar.currentHeight, backgroundColor:'#fff' }}>
       <BackArrow/>

@@ -106,12 +106,14 @@ const Tabs =  createMaterialBottomTabNavigator({
       tabBarIcon:({tintColor})=>(
         <FontAwesome5 name="briefcase" size={20} color={tintColor} />
       ),
+
   }},
 }, {
-  initialRouteName:'Farm',
+  initialRouteName:'Home',
+  backBehaviour:'initialRoute',
   labeled:true,
   activeColor:'#15AB2B',
-  inactiveColor:'#759179',
+  inactiveColor:'#BFC1C2',
   activeTintColor:'white',
   order:['Settings', 'Statistics', 'Home', 'Weather', 'Farm'],
   shifting:true,
@@ -120,7 +122,7 @@ const Tabs =  createMaterialBottomTabNavigator({
     borderTopColor:'#ffffff',
     borderTopWidth:2,
     elevation:15,
-    shadowOffset:{x:10,y:10},
+    shadowOffset:{x:5,y:5},
     shadowColor:'black',
     shadowWidth:5,
   },

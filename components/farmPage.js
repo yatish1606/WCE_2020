@@ -4,7 +4,7 @@ import { View, StyleSheet , StatusBar, Dimensions, TouchableOpacity, Text, Scrol
 import {FontAwesome5} from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import {AppLoading} from 'expo';
-
+import Home from './homePage.js';
 
 
 export class CardComponent extends React.Component{
@@ -102,6 +102,7 @@ export default class MyFarm extends React.Component {
     lightVisible:false,
     moistureVisible:false,
     energyVisible:false,
+    threeDotsVisible:false,
   }
 
 
@@ -134,10 +135,14 @@ export default class MyFarm extends React.Component {
       this.setState({energyVisible: !this.state.energyVisible,  lightVisible:false, moistureVisible:false, tempVisible:false})
     }
 
+    changeThreeDots(){
+      this.setState({threeDotsVisible: !this.state.threeDotsVisible,  lightVisible:false, moistureVisible:false, tempVisible:false, energyVisible:false,})
+    }
+
+
 
 
   render() {
-
 
 
     if(this.state.fontLoaded) {
@@ -145,6 +150,20 @@ export default class MyFarm extends React.Component {
         <View style={{flex:1, marginTop:StatusBar.currentHeight, backgroundColor:'#fff'}}>
 
 
+
+        {this.state.threeDotsVisible?
+          <View style={{ marginHorizontal:15, marginTop:70, position:'absolute',  zIndex:50, right:10, backgroundColor:'#fff', elevation:10, borderRadius:10,width:200, height:250, padding:10}}>
+
+          <TouchableOpacity>
+            <Text style={{fontFamily:20, fontFamily:'NunitoSemiBold', color:'#d4d4d4', marginVertical:4}}>Update Farm Details</Text>
+          </TouchableOpacity>
+
+          <Text style={{fontFamily:20, fontFamily:'NunitoSemiBold', color:'#d4d4d4', marginVertical:4}}>Show Help Bar</Text>
+
+
+          </View>
+        : <View></View>
+       }
 
 
 
@@ -223,11 +242,25 @@ export default class MyFarm extends React.Component {
               </View>  : <View></View>}
 
 
+
+
+
+
               <View style={{flexDirection:'row', justifyContent:'flex-start', marginHorizontal:15, marginTop:15, position:'absolute',  zIndex:15}}>
-              <TouchableOpacity style={{width:50, height:50, borderRadius:25, alignItems:'center', justifyContent:'center',}}  >
+              <TouchableOpacity style={{width:50, height:50, borderRadius:25, alignItems:'center', justifyContent:'center',}} onPress={()=>{this.props.navigation.navigate('Home')}}  >
               <FontAwesome5 name="chevron-left" size={30} color={'#d3d3d3'} />
               </TouchableOpacity>
               </View>
+
+
+              <View style={{flexDirection:'row', justifyContent:'flex-end', marginHorizontal:5, marginTop:15, position:'absolute',  zIndex:15, right:0}}>
+              <TouchableOpacity style={{width:50, height:50, borderRadius:25, alignItems:'center', justifyContent:'center',}} onPress={()=>{this.changeThreeDots()}} >
+              <FontAwesome5 name="ellipsis-v" size={30} color={'#d3d3d3'} />
+              </TouchableOpacity>
+              </View>
+
+
+
 
 
 
