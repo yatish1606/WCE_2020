@@ -1,12 +1,14 @@
 import React , {Component}  from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
+import { createSwitchNavigator} from 'react-navigation';
 import {FontAwesome5} from '@expo/vector-icons';
 import Statistics from './statistics';
 import HomePage from './homePage';
 import Farm from './farmPage';
 import Settings from './settings.js';
+import SupplyChain from './supplyChain.js';
+import LoginPage from './loginPage.js'
 
 class HomeScreen extends Component {
 
@@ -26,14 +28,6 @@ class HomeScreen extends Component {
 }};
 
 class SettingsScreen extends Component {
-
-  async componentDidMount() {
-    await Font.loadAsync({
-      QuicksandBold: require('../assets/fonts/Quicksand-Bold.ttf'),
-      NunitoSemiBold: require('../assets/fonts/Nunito-SemiBold.ttf'),
-      NunitoBold: require('../assets/fonts/Nunito-Bold.ttf'),
-    });
-}
 
   render() {
   return (
@@ -60,9 +54,7 @@ class FarmScreen extends Component {
 class WeatherScreen extends Component {
   render() {
   return (
-    <View style={styles.container}>
-      <Text>weather</Text>
-    </View>
+    <SupplyChain/>
   );
 }};
 
@@ -132,7 +124,18 @@ const Tabs =  createMaterialBottomTabNavigator({
   }
 })
 
-export default Tabs;
+
+
+
+export default createSwitchNavigator({
+  Tabs:{ screen: Tabs},
+  Login:{screen: LoginPage},
+}, {
+  initialRouteName:'Login'
+})
+
+
+
 
 const styles = StyleSheet.create({
   container: {

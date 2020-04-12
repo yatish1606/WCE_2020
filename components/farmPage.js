@@ -36,14 +36,14 @@ export class CardComponent extends React.Component{
 
 
 
-      <View style={{width:Dimensions.get('window').width - 40, height:170, backgroundColor:'#fff', marginVertical:10, borderRadius:5, elevation:3,}}>
+      <View style={{width:Dimensions.get('window').width - 40, height:150, backgroundColor:'#fff', marginVertical:10, borderRadius:5, elevation:5,}}>
 
 
 
 
-      <View style={{flex:2, backgroundColor:'#fff', justifyContent:'center'}}>
+      <View style={{flex:1.5, backgroundColor:'#fff', justifyContent:'center', marginTop:5}}>
 
-      <Text style={{fontFamily:'NunitoSemiBold', fontSize:18, color:'#878787', marginHorizontal:20, marginVertical:5, marginTop:5}}>Arduino Sensor ID : 4563</Text>
+      <Text style={{fontFamily:'NunitoSemiBold', fontSize:15, color:'#878787', marginHorizontal:15, marginTop:2,}}>Arduino Sensor ID : {this.props.sensorID}</Text>
       </View>
 
       <View style={{flex:5, backgroundColor:'#fff', marginHorizontal:10, marginBottom:10, marginTop:5 }}>
@@ -53,12 +53,12 @@ export class CardComponent extends React.Component{
 
             <View style={{flex:1, backgroundColor:'#FEEAE3', marginVertical:4, marginHorizontal:4, borderRadius:4, justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
               <FontAwesome5 name="thermometer-empty" size={25} color='#FC2246' style={{marginVertical:5, marginHorizontal:5}}/>
-              <Text style={{fontSize:15, fontFamily:'NunitoBold', color:'#fc2246', marginHorizontal:3, marginVertical:3}}>25 °C</Text>
+              <Text style={{fontSize:15, fontFamily:'NunitoBold', color:'#fc2246', marginHorizontal:3, marginVertical:3}}>{this.props.temp} °C</Text>
             </View>
 
             <View style={{flex:1, backgroundColor:'#FEFAC0', marginVertical:4, marginHorizontal:4, borderRadius:4,justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
               <FontAwesome5 name="lightbulb" size={23} color='#E1A615' style={{marginVertical:5, marginHorizontal:5}}/>
-              <Text style={{fontSize:15, fontFamily:'NunitoBold', color:'#E1A615', marginHorizontal:3, marginVertical:3}}>50 W/s</Text>
+              <Text style={{fontSize:15, fontFamily:'NunitoBold', color:'#E1A615', marginHorizontal:3, marginVertical:3}}>{this.props.light} L</Text>
             </View>
 
         </View>
@@ -68,13 +68,13 @@ export class CardComponent extends React.Component{
         <View style={{flex:1, backgroundColor:'#B6DEFC', marginVertical:4, marginHorizontal:4, borderRadius:4,justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
 
         <FontAwesome5 name="tint" size={23} color={'#2295FC'} style={{marginVertical:5, marginHorizontal:5}}/>
-        <Text style={{fontSize:15, fontFamily:'NunitoBold', color:'#2295FC', marginHorizontal:3, marginVertical:3}}>25 %</Text>
+        <Text style={{fontSize:15, fontFamily:'NunitoBold', color:'#2295FC', marginHorizontal:3, marginVertical:3}}>{this.props.moisture} %</Text>
         </View>
 
         <View style={{flex:1, backgroundColor:'#D3FBCD', marginVertical:4, marginHorizontal:4, borderRadius:4,justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
 
           <FontAwesome5 name="plug" size={22} color={'#16A40D'} style={{marginVertical:5, marginHorizontal:5}}/>
-          <Text style={{fontSize:15, fontFamily:'NunitoBold', color:'#16A40D', marginHorizontal:3, marginVertical:3}}>125 W</Text>
+          <Text style={{fontSize:15, fontFamily:'NunitoBold', color:'#16A40D', marginHorizontal:3, marginVertical:3}}>{this.props.energy} W</Text>
         </View>
 
         </View>
@@ -103,6 +103,7 @@ export default class MyFarm extends React.Component {
     moistureVisible:false,
     energyVisible:false,
     threeDotsVisible:false,
+    helpBarVisible:true,
   }
 
 
@@ -139,6 +140,12 @@ export default class MyFarm extends React.Component {
       this.setState({threeDotsVisible: !this.state.threeDotsVisible,  lightVisible:false, moistureVisible:false, tempVisible:false, energyVisible:false,})
     }
 
+    toggleHelpBar(){
+      this.setState({helpBarVisible: !this.state.helpBarVisible}),
+      this.setState({threeDotsVisible:false})
+    }
+
+
 
 
 
@@ -152,13 +159,41 @@ export default class MyFarm extends React.Component {
 
 
         {this.state.threeDotsVisible?
-          <View style={{ marginHorizontal:15, marginTop:70, position:'absolute',  zIndex:50, right:10, backgroundColor:'#fff', elevation:10, borderRadius:10,width:200, height:250, padding:10}}>
+          <View style={{ marginHorizontal:15, marginTop:70, position:'absolute',  zIndex:50, right:10, backgroundColor:'#fff', elevation:30, borderRadius:10,width:200, height:210, paddingVertical:10, paddingHorizontal:10}}>
+
+          <ScrollView showsVerticalScrollIndicator={false}>
 
           <TouchableOpacity>
-            <Text style={{fontFamily:20, fontFamily:'NunitoSemiBold', color:'#d4d4d4', marginVertical:4}}>Update Farm Details</Text>
+            <Text style={{fontSize:15, fontFamily:'NunitoRegular', color:'#B9B8B8', marginVertical:4}}>Update Farm Details</Text>
           </TouchableOpacity>
 
-          <Text style={{fontFamily:20, fontFamily:'NunitoSemiBold', color:'#d4d4d4', marginVertical:4}}>Show Help Bar</Text>
+          <View style={{height:0.7, width:180, marginVertical:5, backgroundColor:'#d3d3d3'}}></View>
+
+          <TouchableOpacity onPress={()=>this.toggleHelpBar()}>
+            <Text style={{fontSize:15, fontFamily:'NunitoRegular', color:'#B9B8B8', marginVertical:4}}>{this.state.helpBarVisible ? 'Hide' : 'Show'} Help Bar</Text>
+          </TouchableOpacity>
+
+          <View style={{height:0.7, width:180, marginVertical:5, backgroundColor:'#d3d3d3'}}></View>
+
+          <TouchableOpacity>
+            <Text style={{fontSize:15, fontFamily:'NunitoRegular', color:'#B9B8B8', marginVertical:4}}>Statistics</Text>
+          </TouchableOpacity>
+
+          <View style={{height:0.7, width:180, marginVertical:5, backgroundColor:'#d3d3d3'}}></View>
+
+          <TouchableOpacity>
+            <Text style={{fontSize:15, fontFamily:'NunitoRegular', color:'#B9B8B8', marginVertical:4}}>Know More</Text>
+          </TouchableOpacity>
+
+          <View style={{height:0.7, width:180, marginVertical:5, backgroundColor:'#d3d3d3'}}></View>
+
+          <TouchableOpacity>
+            <Text style={{fontSize:15, fontFamily:'NunitoRegular', color:'#B9B8B8', marginVertical:4}}>Report an error</Text>
+          </TouchableOpacity>
+
+          </ScrollView>
+
+          
 
 
           </View>
@@ -168,7 +203,7 @@ export default class MyFarm extends React.Component {
 
 
 
-
+              {this.state.helpBarVisible ? 
               <View style={{position:'absolute', width:50, height:205, borderRadius:10, backgroundColor:'white', right:5, top:180, zIndex:10, elevation:20, alignItems:'center', justifyContent:'space-around', paddingVertical:5}}>
 
               <TouchableOpacity onPress={()=>{this.changeTemp()}}>
@@ -185,6 +220,8 @@ export default class MyFarm extends React.Component {
               </TouchableOpacity>
 
               </View>
+
+              : <View></View>}
 
 
               {this.state.tempVisible ?
@@ -368,19 +405,14 @@ export default class MyFarm extends React.Component {
           </View>
 
 
-          <Text style={{fontSize:22, fontFamily:'QuicksandBold', color:'green', marginHorizontal:10, marginVertical:10}}>Sensor Data</Text>
+          <Text style={{fontSize:22, fontFamily:'QuicksandBold', color:'green', marginHorizontal:0, marginVertical:10}}>Sensor Data</Text>
 
 
-          <CardComponent/>
-          <CardComponent/>
-          <CardComponent/>
-          <CardComponent/>
-          <CardComponent/>
-          <CardComponent/>
-          <CardComponent/>
-          <CardComponent/>
-          <CardComponent/>
-          <CardComponent/>
+          <CardComponent sensorID={1264} temp={25} light={21} energy={60} moisture={10} />
+          <CardComponent sensorID={5345} temp={24} light={24} energy={63} moisture={11.5}/>
+          <CardComponent sensorID={1243} temp={23} light={23} energy={67} moisture={12}/>
+          <CardComponent sensorID={3464} temp={22} light={22} energy={61} moisture={9.8}/>
+          
 
 
           <Lottie

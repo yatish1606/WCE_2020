@@ -310,9 +310,54 @@ export default class Statistics extends React.Component{
 
 
             <View style={{alignItems:'center'}}>
-                <Text style={{fontSize:30, color:'#fff', fontFamily:'QuicksandBold', textAlign:'center', marginTop:60}}>
+                <Text style={{fontSize:30, color:'#D3D5D5', fontFamily:'QuicksandBold', textAlign:'center', marginTop:60}}>
                     Statistics
                 </Text>
+            </View>
+
+            <View style={{height:Dimensions.get('window').height*0.25 , marginHorizontal:20, backgroundColor:'#2D2F2F', borderRadius:10, marginTop:20, marginBottom:5, alignItems:'center', justifyContent:'space-around'}}>
+
+                <Text style={{fontSize:17, fontFamily:'NunitoSemiBold', color:'#C5C6C6', textAlign:'center', marginTop:10}}>One Week Average Readings</Text>
+
+                <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-evenly', width:Dimensions.get('window').width - 200, marginVertical:5}}>
+                    <Text style={{fontSize:13, fontFamily:'NunitoBold', color:'#12C9A4', textAlign:'center', marginVertical:5}}>from</Text>
+                    <Text style={{fontSize:13, fontFamily:'NunitoBold', color:'#C5C6C6', textAlign:'center', marginVertical:5, paddingHorizontal:5,paddingVertical:2, backgroundColor:'#999A9A1c', borderRadius:10}}>20/3</Text>
+                    <Text style={{fontSize:13, fontFamily:'NunitoBold', color:'#12C9A4', textAlign:'center', marginVertical:5}}>to</Text>
+                    <Text style={{fontSize:13, fontFamily:'NunitoBold', color:'#C5C6C6', textAlign:'center', marginVertical:5, paddingHorizontal:5,paddingVertical:2, backgroundColor:'#999A9A1c', borderRadius:10}}>26/3</Text>
+                </View>
+                
+
+                
+                <View style={{marginBottom:5,alignItems:'center'}}>
+                    <View style={{flexDirection:'row', justifyContent:'space-around', backgroundColor:'#1F1C1C', width:Dimensions.get('window').width - 50, alignItems:'center', paddingVertical:5, borderTopRightRadius:5, borderTopLeftRadius:5, paddingTop:10}}>
+                        <FontAwesome5 name='thermometer-half' size={20} color='#FB675E' style={{margin:5}}/>
+                        <FontAwesome5 name='tint' size={20} color='#0E9EEE' style={{margin:5}}/>
+                        <FontAwesome5 name='lightbulb' size={20} color='#EEA70E' style={{margin:5}}/>
+                    </View>
+                    <View style={{flexDirection:'row', justifyContent:'space-evenly', backgroundColor:'#1F1C1C', width:Dimensions.get('window').width - 50, alignItems:'center', paddingVertical:5, borderBottomLeftRadius:5, borderBottomRightRadius:5, }}>
+                        <Text style={{fontFamily:'NunitoBold', fontSize:20, color:'#FB675E', marginHorizontal:5}}>35 °C</Text>
+                        <View style={{width:1, height:30, backgroundColor:'#4A4B4B', borderRadius:1}}></View>
+                        <Text style={{fontFamily:'NunitoBold', fontSize:20, color:'#0E9EEE', marginHorizontal:5}}>35 %</Text>
+                        <View style={{width:1, height:30, backgroundColor:'#4A4B4B', borderRadius:1}}></View>
+                        <Text style={{fontFamily:'NunitoBold', fontSize:20, color:'#EEA70E', marginHorizontal:5}}>35 W/s</Text>
+                        
+                    </View>
+
+                </View>
+                   
+                
+                
+            </View>
+
+            <View style={{height:70, marginHorizontal:20, borderRadius:10, backgroundColor:'#2D2F2F', marginVertical:5, flexDirection:'row', justifyContent:'space-around', paddingHorizontal:10, alignItems:'center'}}>
+                <FontAwesome5 name='question-circle' size={20} color='#1BC415'/>
+                <View style={{marginHorizontal:10}}>
+                    <Text style={{color:'#15C496', fontFamily:'NunitoSemiBold', fontSize:16}}>Know More</Text>
+                    <Text style={{color:'#A2A5A4', fontFamily:'NunitoSemiBold', fontSize:10, maxWidth:Dimensions.get('window').width - 140}}>A deeper insight into how statistics are collected and calculated</Text>
+                </View>
+                <TouchableOpacity style={{height:30, width:30, borderRadius:15,backgroundColor:'#ffffff1b', alignItems:'center', justifyContent:'center'}} underlayColor='#fff'>
+                    <FontAwesome5 name='chevron-right' size={16} color='#d3d3d3'/>
+                </TouchableOpacity>
             </View>
 
 

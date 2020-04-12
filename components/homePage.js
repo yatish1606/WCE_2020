@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     borderRadius:20,
     marginHorizontal:10,
-    elevation:2,
+    elevation:20,
     shadowColor:'black',
     shadowOffset:{x:2,y:2},
     //width:width,
@@ -356,7 +356,7 @@ const styles = StyleSheet.create({
     //borderRadius:20,
     marginVertical:5,
     marginHorizontal:10,
-    //elevation:2,
+    //elevation:20,
     //borderRadius:40,
     //borderWidth:1,
     //borderColor:'#d3d3d3'

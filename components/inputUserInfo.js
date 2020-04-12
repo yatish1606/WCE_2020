@@ -78,7 +78,7 @@ export class Slide1 extends React.Component{
           </View>
           <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
         <TextInput onChangeText={(text) => this.onNameChange(text)} value={this.state.name} width={Dimensions.get('window').width-100} borderWidth={1} marginVertical={4} marginHorizontal={3} borderRadius={10} borderColor='#EAE8E8' height={35} marginTop={5} paddingLeft={10} autoCapitalize={'words'}/>
-        <TouchableOpacity onPress={()=> this.clearName } >
+        <TouchableOpacity onPress={()=> this.clearName() } >
         <FontAwesome5 name="times-circle" size={15} color='#d3d3d3' style={{marginVertical:2, marginHorizontal:5}}  />
         </TouchableOpacity>
           </View>
@@ -102,7 +102,7 @@ export class Slide1 extends React.Component{
           <Text style={{marginLeft:10, color:'#d3d3d3', fontFamily:'NunitoSemiBold', fontSize:12}}>Email will be used as username during logging in</Text>
           <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
         <TextInput onChangeText={(text) => this.onEmailChange(text)} value={this.state.email} width={Dimensions.get('window').width-100} borderWidth={1} marginVertical={4} marginHorizontal={3} borderRadius={10} borderColor='#EAE8E8' height={35} marginTop={5} paddingLeft={10} keyboardType='email-address'/>
-        <TouchableOpacity onPress={()=> this.clearEmail } >
+        <TouchableOpacity onPress={()=> this.clearEmail() } >
         <FontAwesome5 name="times-circle" size={15} color='#d3d3d3' style={{marginVertical:2, marginHorizontal:5}}  />
         </TouchableOpacity>
           </View>
