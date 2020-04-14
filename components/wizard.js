@@ -5,6 +5,7 @@ import FarmSetUp from './farmSetUp.js'
 import InputUserInfo from './inputUserInfo.js';
 import FarmInfo from './farmInfo.js';
 import NavBar from './navBar.js'
+import OnBoard from './onBoard.js'
 
 const MainNavigator = createStackNavigator({
   GetStarted: {screen: GetStarted, navigationOptions: { headerShown: false } },
@@ -12,6 +13,7 @@ const MainNavigator = createStackNavigator({
   InputUserInfo: {screen: InputUserInfo, navigationOptions: { headerShown: false }},
   FarmInfo:{screen : FarmInfo, navigationOptions:{ headerShown:false}},
   NavBar:{screen:NavBar, navigationOptions:{headerShown:false}},
+  OnBoard:{screen:OnBoard, navigationOptions:{headerShown:false}},
 },
 {
   initialRouteName : 'GetStarted',
